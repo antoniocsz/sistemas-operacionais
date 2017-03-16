@@ -18,12 +18,9 @@ void imprimir(ponteiroLista *Lista);
 
 int main(void) {
 	ponteiroLista lista;
-	int i;
-	inicializar(&lista);
 
-	for(i = 0; i < 11 ; i++) {
-		inserir(&lista,i); //inserindo de 0 a 10 na lista
-	}
+	inicializar(&lista);
+	imprimir(&lista);
 
 	return EXIT_SUCCESS;
 }
@@ -31,6 +28,10 @@ int main(void) {
 
 void inicializar(ponteiroLista *Lista){
 	*Lista = NULL;
+	int i;
+	for(i = 0; i < 11 ; i++) {
+		inserir(&*Lista, 0);
+	}
 }
 
 _Bool consultar(ponteiroLista *Lista, int valor){
@@ -51,8 +52,8 @@ _Bool inserir(ponteiroLista *Lista, int valor){
 
 void imprimir(ponteiroLista *Lista){
 	ponteiroLista ponteiro;
-	printf("\n");
-	for(ponteiro = *Lista; (ponteiro) ; ponteiro = ponteiro->prox)
-		printf("%d , ", ponteiro->chave);
+	for (ponteiro = *Lista; (ponteiro) ; ponteiro = ponteiro->prox) {
+		printf("%d ", ponteiro->chave);
+	}
 	printf("\n");
 }
