@@ -24,15 +24,7 @@ int main(void) {
 	for(i = 0; i < 11 ; i++) {
 		inserir(&lista,i); //inserindo de 0 a 10 na lista
 	}
-	imprimir(&lista);
 
-	for (i = 0; i < 11; i++) {
-		if (consultar(&lista, i)) {
-			printf("O numero %d pertence a lista\n", i);
-		} else {
-			printf("O numero %d nao pertence a lista\n", i);
-		}
-	}
 	return EXIT_SUCCESS;
 }
 
@@ -41,14 +33,10 @@ void inicializar(ponteiroLista *Lista){
 	*Lista = NULL;
 }
 
-ponteiroLista consultarendereco(ponteiroLista *Lista, int x){
-	ponteiroLista ponteiro;
-	for(ponteiro = *Lista; (ponteiro) && (ponteiro->chave != x); ponteiro = ponteiro->prox);
-	return ponteiro;
-}
-
 _Bool consultar(ponteiroLista *Lista, int valor){
-	return (consultarendereco(Lista, valor));
+	ponteiroLista ponteiro;
+	for(ponteiro = *Lista; (ponteiro) && (ponteiro->chave != valor); ponteiro = ponteiro->prox);
+	return ponteiro;
 }
 
 _Bool inserir(ponteiroLista *Lista, int valor){
@@ -64,7 +52,7 @@ _Bool inserir(ponteiroLista *Lista, int valor){
 void imprimir(ponteiroLista *Lista){
 	ponteiroLista ponteiro;
 	printf("\n");
-	for(ponteiro = *Lista; (ponteiro) ; p = ponteiro->prox)
+	for(ponteiro = *Lista; (ponteiro) ; ponteiro = ponteiro->prox)
 		printf("%d , ", ponteiro->chave);
 	printf("\n");
 }
